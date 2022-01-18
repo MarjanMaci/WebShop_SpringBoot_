@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome and Choose a Course</title>
+    <link rel="stylesheet" th:href="@{/css/edit-product.css}" href="../static/css/courselist.css">
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Product List</h1>
+</header>
+<main>
+    <h2>Choose Product:</h2>
+    <form th:method="POST" th:action="@{'/home/edit/{id}'(id=${product.getId()})}">
+        <input type="text" id="name" name="name" th:value="${product.getName()}">
+        <input type="text" id="price" name="price" th:value="${product.getPrice()}">
+        <input type="text" id="quantity" name="quantity" th:value="${product.getQuantity()}">
+        <select id="category">
+            <option th:each="cat : ${category}" th:text="${cat.getName()}" th:selected="${product.getCategory().getName()}"></option>
+        </select>
+        <select id="manufacturer">
+            <option th:each="man: ${manufacturer}" th:text="${man.getName()}" th:selected="${product.getManufacturer().getName()}"></option>
+        </select>
+        <input type="submit" th:value="Submit">
+    </form>
+</main>
+</body>
+</html>
